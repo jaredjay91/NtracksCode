@@ -13,6 +13,22 @@ void drawText(const char *text, float xp, float yp, int textColor=kBlack, int te
    tex->Draw();
 }
 
+//original colors:
+//int colorAA5 = 1;
+//int colorPA8 = 2;
+//int colorPA5 = kGreen+3;
+//int colorPP5 = 4;
+//int colorAA5cent20 = 6;
+
+//Colors to match the efficiency plots.
+int colorAA5 = kRed;
+int colorPA8 = kBlue;
+int colorPA5 = kGreen+1;
+int colorPP5 = kBlack;
+int colorAA5cent20 = 6;
+
+int linewidth = 1;
+
 void PlotAllNtracksDists() {
 
   gStyle->SetOptStat(0);
@@ -21,7 +37,8 @@ void PlotAllNtracksDists() {
   TFile* fAA5 = TFile::Open("Ntracks_MinBias_PbPb_5TeV_ManyFiles_prettyBins.root","READ");
   //TFile* fAA5 = TFile::Open("Ntracks_MinBias_PbPb_5TeV_ManyFilesMoreBins.root","READ");
   TH1F* hAA5 = (TH1F*)fAA5->Get("ntracksHist");
-  hAA5->SetLineColor(1);
+  hAA5->SetLineColor(colorAA5);
+  hAA5->SetLineWidth(linewidth);
   int nAA5 = hAA5->GetEntries();
   hAA5->Scale(1.0/((double)nAA5));
   cout << "nAA5 = " << nAA5 << endl;
@@ -29,7 +46,8 @@ void PlotAllNtracksDists() {
   //pPb 8.16TeV
   TFile* fPA8 = TFile::Open("Ntracks_MinBias_pPb_8TeV_ManyFiles_prettyBins.root","READ");
   TH1F* hPA8 = (TH1F*)fPA8->Get("ntracksHist");
-  hPA8->SetLineColor(2);
+  hPA8->SetLineColor(colorPA8);
+  hPA8->SetLineWidth(linewidth);
   int nPA8 = hPA8->GetEntries();
   hPA8->Scale(1.0/((double)nPA8));
   cout << "nPA8 = " << nPA8 << endl;
@@ -39,7 +57,8 @@ void PlotAllNtracksDists() {
   TFile* fPA5 = TFile::Open("Ntracks_MinBias_pPb_5TeV_ManyFiles_prettyBins.root","READ");
   TH1F* hPA5 = (TH1F*)fPA5->Get("ntracksHist");
   //hPA5->SetLineColor(3);
-  hPA5->SetLineColor(kGreen+3);
+  hPA5->SetLineColor(colorPA5);
+  hPA5->SetLineWidth(linewidth);
   int nPA5 = hPA5->GetEntries();
   hPA5->Scale(1.0/((double)nPA5));
   cout << "nPA5 = " << nPA5 << endl;
@@ -49,7 +68,8 @@ void PlotAllNtracksDists() {
   //TFile* fPP5 = TFile::Open("Ntracks_MinBias_pp_5TeV_ManyFiles.root","READ");
   TFile* fPP5 = TFile::Open("Ntracks_ZeroBias_pp_5TeV_ManyFiles_prettyBins.root","READ");
   TH1F* hPP5 = (TH1F*)fPP5->Get("ntracksHist");
-  hPP5->SetLineColor(4);
+  hPP5->SetLineColor(colorPP5);
+  hPP5->SetLineWidth(linewidth);
   //hPP5->Rebin(2);
   int nPP5 = hPP5->GetEntries();
   hPP5->Scale(1.0/((double)nPP5));
@@ -61,7 +81,8 @@ void PlotAllNtracksDists() {
   TH1F* hAA5cent10 = (TH1F*)fAA5cent10->Get("ntracksHist[0]");
   TH1F* hAA5cent20 = (TH1F*)fAA5cent10->Get("ntracksHist[1]");
   hAA5cent20->Add(hAA5cent10);
-  hAA5cent20->SetLineColor(6);
+  hAA5cent20->SetLineColor(colorAA5cent20);
+  hAA5cent20->SetLineWidth(linewidth);
   //hAA5cent20->SetFillColor(6);
   hAA5cent20->Scale(1.0/((double)nAA5*34));//hAA5 (variablebins) has bins of size 36, while hAA5cent10 has bins of size 20
   //hAA5cent20->GetXaxis()->SetLimits(1000,4000);
@@ -119,10 +140,11 @@ void PlotAllNtracksDists() {
   //leg->SetTextFont(43);
   leg->SetTextFont(43);
   leg->SetBorderSize(0);
-  leg->AddEntry(hAA5,"PbPb, #sqrt{s_{NN}}=5TeV","l");
-  leg->AddEntry(hPA8,"pPb, #sqrt{s_{NN}}=8TeV","l");
-  leg->AddEntry(hPA5,"pPb, #sqrt{s_{NN}}=5TeV","l");
   leg->AddEntry(hPP5,"pp, #sqrt{s}=5TeV","l");
+  leg->AddEntry(hPA5,"pPb, #sqrt{s_{NN}}=5TeV","l");
+  leg->AddEntry(hPA8,"pPb, #sqrt{s_{NN}}=8TeV","l");
+  leg->AddEntry(hAA5,"PbPb, #sqrt{s_{NN}}=5TeV","l");
+  leg->AddEntry(hAA5cent20,Form("0-20%s Centrality","%"),"l");
   leg->Draw("same");
 
   TLatex *cmstex = new TLatex(0.72,0.81,"CMS");
@@ -137,7 +159,7 @@ void PlotAllNtracksDists() {
   //extratex->SetNDC();
   //extratex->Draw();
 
-  float xpos = 0.78;//0.77
+  /*float xpos = 0.78;//0.77
   float ypos = 0.18;
   float ystep = 0.03;
   float textsize = 0.03;
@@ -162,6 +184,7 @@ void PlotAllNtracksDists() {
   //centtex3->SetTextSize(textsize);
   //centtex3->SetNDC();
   //centtex3->Draw();
+*/
 
   //Print averages:
   cout << "hAA5 avg = " << hAA5->GetMean() << endl;
