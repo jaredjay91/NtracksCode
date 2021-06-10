@@ -116,6 +116,7 @@ void PlotAllNtracksDists() {
   hAA5->GetXaxis()->SetRange(6,200);
   //hAA5->GetXaxis()->SetRangeUser(1000,4000);
   hAA5->GetXaxis()->SetTitle("N_{tracks}");
+  hAA5->GetXaxis()->SetTitleSize(0.04);
   //hAA5->GetYaxis()->SetTitleOffset(1.43);
   hAA5->GetYaxis()->CenterTitle(kFALSE);
   //hAA5->GetYaxis()->SetTitleSize(0.058);
@@ -136,7 +137,7 @@ void PlotAllNtracksDists() {
   c1->SetTicky();
 
   //TLegend* leg = new TLegend(0.58,0.5,0.89,0.72); leg->SetTextSize(12);
-  TLegend* leg = new TLegend(0.58,0.58,0.89,0.79); leg->SetTextSize(12);
+  TLegend* leg = new TLegend(0.55,0.57,0.85,0.85); leg->SetTextSize(12);
   //leg->SetTextFont(43);
   leg->SetTextFont(43);
   leg->SetBorderSize(0);
@@ -144,10 +145,11 @@ void PlotAllNtracksDists() {
   leg->AddEntry(hPA5,"pPb, #sqrt{s_{NN}}=5TeV","l");
   leg->AddEntry(hPA8,"pPb, #sqrt{s_{NN}}=8TeV","l");
   leg->AddEntry(hAA5,"PbPb, #sqrt{s_{NN}}=5TeV","l");
-  leg->AddEntry(hAA5cent20,Form("0-20%s Centrality","%"),"l");
+  leg->AddEntry(hAA5cent20,"PbPb, #sqrt{s_{NN}}=5TeV","l");
+  leg->AddEntry(hAA5cent20,Form("0-20%s Centrality","%"),"");
   leg->Draw("same");
 
-  TLatex *cmstex = new TLatex(0.72,0.81,"CMS");
+  TLatex *cmstex = new TLatex(0.15,0.15,"CMS");
   cmstex->SetTextFont(61);
   cmstex->SetTextSize(0.08);
   cmstex->SetNDC();
