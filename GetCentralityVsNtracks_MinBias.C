@@ -8,6 +8,12 @@ void GetCentralityVsNtracks_MinBias() {
   int centBins[8] = {0,10,20,30,40,50,65,100};
   int hiBins[8] = {0,20,40,60,80,100,130,200};
   float hiBinsFloat[8] = {0,20,40,60,80,100,130,200};
+  //int centBins[9] = {0,5,10,20,30,40,50,75,100};
+  //int hiBins[9] = {0,10,20,40,60,80,100,150,200};
+  //float hiBinsFloat[9] = {0,10,20,40,60,80,100,150,200};
+  //int centBins[7] = {0,10,20,30,40,50,100};
+  //int hiBins[7] = {0,20,40,60,80,100,200};
+  //float hiBinsFloat[7] = {0,20,40,60,80,100,200};
   //int centBins[4] = {0,20,40,100};
   //int hiBins[4] = {0,40,80,200};
   //float hiBinsFloat[4] = {0,40,80,200};
@@ -53,11 +59,11 @@ void GetCentralityVsNtracks_MinBias() {
   for(int i=0; i<numBins; i++) {
     for (int fileNum=1; fileNum<=numFiles; fileNum++) {
       TString fileName = Form("%sntrack_AAMinBias_5TeV_AOD_%i.root", directory.Data(), fileNum);
-      cout << "Reading file " << fileName << endl;
+      //cout << "Reading file " << fileName << endl;
       TFile* inFile = TFile::Open(fileName,"READ");
       TTree* myTree = (TTree*)inFile->Get("Events");
       TString centCut = Form("(%s+%s)>=%f && (%s+%s)<%f", HFplusTag.Data(), HFminusTag.Data(), hfBin[200-hiBins[i+1]], HFplusTag.Data(), HFminusTag.Data(), hfBin[200-hiBins[i]]);
-      cout << centCut << endl;
+      //cout << centCut << endl;
 
       TH1F* hInttmp = new TH1F("hInttmp","hInttmp",numNtracksBins,NtracksMin,NtracksMax);
       if (i==0) {
@@ -83,7 +89,8 @@ void GetCentralityVsNtracks_MinBias() {
     }
     ntracksHist[i]->Draw("same");
     histLabel[i] = Form("%i-%i%: avg=%i",centBins[i],centBins[i+1],(int)ntracksHist[i]->GetMean());
-    cout << histLabel[i] << " +/- " << (ntracksHist[i]->GetRMS()/sqrt(ntracksHist[i]->GetEntries())) << endl;
+cout << histLabel[i] << " +/- " << ntracksHist[i]->GetRMS() << endl;
+    //cout << histLabel[i] << " +/- " << (ntracksHist[i]->GetRMS()/sqrt(ntracksHist[i]->GetEntries())) << endl;
   }
 
 //  cout << "Creating HF histogram..." << endl;
@@ -101,13 +108,13 @@ void GetCentralityVsNtracks_MinBias() {
   }
   fitleg->Draw("same");
 
-  c1->SaveAs("NtracksInCentralityBins_MinBias_fromCrab.pdf");
-  c1->SaveAs("NtracksInCentralityBins_MinBias_fromCrab.png");
+  TString outfName = "NtracksInCentralityBins_MinBias_fromCrab_2020_11_03";
+  c1->SaveAs(Form("%s.pdf",outfName.Data()));
+  c1->SaveAs(Form("%s.png",outfName.Data()));
 
   cout << endl << "Here's what's in memory: " << endl;
   gDirectory->ls("-m");
 
-  TString outfName = "NtracksInCentralityBins_MinBias_fromCrab";
   TFile* outf = new TFile(Form("%s.root",outfName.Data()),"recreate");
   ntracksIntHist->Write();
   for(int i=0; i<numBins; i++) {
