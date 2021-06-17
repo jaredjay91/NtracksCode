@@ -5,9 +5,9 @@ void GetCentralityVsNtracks_MinBias() {
 
   gStyle->SetOptStat(0);
 
-  int centBins[8] = {0,10,20,30,40,50,65,100};
-  int hiBins[8] = {0,20,40,60,80,100,130,200};
-  float hiBinsFloat[8] = {0,20,40,60,80,100,130,200};
+  int centBins[8] = {0,10,20,30,40,50,60,100};
+  int hiBins[8] = {0,20,40,60,80,100,120,200};
+  float hiBinsFloat[8] = {0,20,40,60,80,100,120,200};
   //int centBins[9] = {0,5,10,20,30,40,50,75,100};
   //int hiBins[9] = {0,10,20,40,60,80,100,150,200};
   //float hiBinsFloat[9] = {0,10,20,40,60,80,100,150,200};

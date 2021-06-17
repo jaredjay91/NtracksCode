@@ -198,6 +198,7 @@ void PlotAllNtracksDists() {
   TString outfName = "Ntracks_AllSystems";
   c1->SaveAs(Form("%s.pdf",outfName.Data() ));
   c1->SaveAs(Form("%s.png",outfName.Data() ));
+  c1->SaveAs(Form("%s.C",outfName.Data() ));
 
   cout << endl << "Here's what's in memory: " << endl;
   gDirectory->ls("-m");

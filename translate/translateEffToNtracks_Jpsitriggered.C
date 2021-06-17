@@ -66,60 +66,16 @@ void centToNtracks(float hiBin, double* ntracksvalptr, double* ntrackserrloptr, 
 
 }
 
-void translateEffToNtracks_triggered(){
+void translateEffToNtracks_Jpsitriggered(){
 
-/*  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Ana_MC_L3Mu12_PbPb_0_v5_paperFixedBWn.root";
+  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Ana_MC_L3Mu12_PbPb_0_v5_paperFixedBWn.root";
   TString outFileName = "newFiles_triggered/PbPbZ_tnp_Ana_MC_L3Mu12_PbPb_0_v5_paperFixedBWn_Ntracks.root";
   TString treeTag = "tpTree";
   const static int numdirs = 1;
   TString centTag[numdirs] = {"Trg_centdep"};
   TString ntracksTag[numdirs] = {"Trg_ntracksdep"};
   TString selectionTag[numdirs] = {"tag_hiBin_PLOT_isTightMuon_true"};
-*/
-/*
-  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Ana_MC_MuId_PbPb_paper_0.root";
-  TString outFileName = "newFiles_triggered/PbPbZ_tnp_Ana_MC_MuId_PbPb_paper_0_Ntracks.root";
-  TString treeTag = "tpTree";
-  const static int numdirs = 1;
-  TString centTag[numdirs] = {"MuId_centdep"};
-  TString ntracksTag[numdirs] = {"MuId_ntracksdep"};
-  TString selectionTag[numdirs] = {"tag_hiBin_PLOT_Glb_true_&_PF_true"};
-*/
-/*
-  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Ana_RD_L3Mu12_PbPb_0_v5_paperFixedBWn.root";
-  TString outFileName = "newFiles_triggered/PbPbZ_tnp_Ana_RD_L3Mu12_PbPb_0_v5_paperFixedBWn_Ntracks.root";
-  TString treeTag = "tpTree";
-  const static int numdirs = 1;
-  TString centTag[numdirs] = {"Trg_centdep"};
-  TString ntracksTag[numdirs] = {"Trg_ntracksdep"};
-  TString selectionTag[numdirs] = {"tag_hiBin_PLOT_isTightMuon_true"};
-*/
-/*
-  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Ana_RD_MuId_PbPb_paper_0.root";
-  TString outFileName = "newFiles_triggered/PbPbZ_tnp_Ana_RD_MuId_PbPb_paper_0_Ntracks.root";
-  TString treeTag = "tpTree";
-  const static int numdirs = 1;
-  TString centTag[numdirs] = {"MuId_centdep"};
-  TString ntracksTag[numdirs] = {"MuId_ntracksdep"};
-  TString selectionTag[numdirs] = {"tag_hiBin_PLOT_Glb_true_&_PF_true"};
-*/
-/*
-  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Z_MC_Trk_PbPb_paper_0.root";
-  TString outFileName = "newFiles_triggered/PbPbZ_tnp_Z_MC_Trk_PbPb_paper_0_Ntracks.root";
-  TString treeTag = "tpTreeTrk";
-  const static int numdirs = 2;
-  TString centTag[numdirs] = {"Trk_centdep", "Trk_centdep_noTC"};
-  TString ntracksTag[numdirs] = {"Trk_ntracksdep", "Trk_ntracksdep_noTC"};
-  TString selectionTag[numdirs] = {"tag_hiBin_PLOT_TrackCuts_true", "tag_hiBin_PLOT"};
-*/
 
-  TString inFileName = "OtaFiles_2021_06_07/PbPbZ_tnp_Z_RD_Trk_PbPb_paper_0.root";
-  TString outFileName = "newFiles_triggered/PbPbZ_tnp_Z_RD_Trk_PbPb_paper_0_Ntracks.root";
-  TString treeTag = "tpTreeTrk";
-  const static int numdirs = 2;
-  TString centTag[numdirs] = {"Trk_centdep", "Trk_centdep_noTC"};
-  TString ntracksTag[numdirs] = {"Trk_ntracksdep", "Trk_ntracksdep_noTC"};
-  TString selectionTag[numdirs] = {"tag_hiBin_PLOT_TrackCuts_true", "tag_hiBin_PLOT"};
 
   //Set up the output tree.
   TFile* outFile = new TFile(outFileName.Data(),"recreate");
